@@ -25,13 +25,13 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f">
-        <schema name="main" object-types="index, constraint, dataset trigger, table, column, view" />
+        <schema name="main" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="9a082a30-550b-4255-a0fb-08e3605f4f5f">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM manager_comment]]></console>
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM django_session]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -41,7 +41,27 @@
     <connection id="9a082a30-550b-4255-a0fb-08e3605f4f5f" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.auth_user" active-filter-id="2ddee430-fe7c-4980-b143-172aa4e0fe71">
+      <filter id="2ddee430-fe7c-4980-b143-172aa4e0fe71" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.django_migrations" active-filter-id="787a9592-0cb2-4a33-bcf8-c6a207c27ee6">
+      <filter id="787a9592-0cb2-4a33-bcf8-c6a207c27ee6" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.manager_book" active-filter-id="044b1e1d-ca1c-47fc-bf17-38b8ce2164ef">
+      <filter id="044b1e1d-ca1c-47fc-bf17-38b8ce2164ef" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.manager_comment" active-filter-id="" />
+    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.django_session" active-filter-id="28a9248c-b1cf-4568-bea9-2da0c5217823">
+      <filter id="28a9248c-b1cf-4568-bea9-2da0c5217823" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="session_key" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
