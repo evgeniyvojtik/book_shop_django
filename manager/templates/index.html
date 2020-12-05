@@ -22,7 +22,8 @@
     <h4> {{ b.title }}</h4>
     <h4> {{ b.date }}</h4>
     <h6> {{ b.text }}</h6>
-    {{ b.authors.all }}
+<h4>{{ b.authors.all }}</h4>
+<a href = "{% url 'add_like' id=b.id %}"> <h4> likes: {{ b.count }} </h4> </a>
     {% for comment in b.comments.all %}
         <h4>{{ comment.text }}</h4>
         <h5>{{ comment.date }}</h5>

@@ -1,10 +1,8 @@
+from django.db.models import Count
 from django.http import HttpResponse
-from django.shortcuts import render
-
-# Create your views here.
+from django.shortcuts import render, redirect
 from django.views import View
-
-from manager.models import Book
+from manager.models import Book, LikeBookUser
 
 
 def hello(request, name = 'Filipp', digit = None):
@@ -14,5 +12,13 @@ def hello(request, name = 'Filipp', digit = None):
 
 class MyPage(View):
     def get(self, request):
-        context = {'books': Book.objects.all()}
+        context = {}
+        context['books'] =  Book.objects.prefetch_related("authors","comments").\
+                                                annotate(count=Count("likes1"))
         return render(request, 'index.html', context)
+
+class Addlike(View):
+    def get(selfself, request, id):
+        if request.user.is_authenticated:
+                LikeBookUser.objects.create(user=request.user, book_id=id)
+        return redirect('the-main-page')
