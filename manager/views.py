@@ -4,6 +4,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.views import View
 
+from manager.models import Book
+
 
 def hello(request, name = 'Filipp', digit = None):
     if digit is not None:
@@ -12,6 +14,5 @@ def hello(request, name = 'Filipp', digit = None):
 
 class MyPage(View):
     def get(self, request):
-        context = {'name':'Zhenya', 'addr':'Minsk'}
-        context['arr'] = ['Igor', 'Abdul', 'Shahar', 'Ibragom', 'Oded']
+        context = {'books': Book.objects.all()}
         return render(request, 'index.html', context)
