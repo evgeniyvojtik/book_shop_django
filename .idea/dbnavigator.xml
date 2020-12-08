@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f">
-        <schema name="main" object-types="table, view" />
+        <schema name="main" object-types="dataset trigger, view, constraint, column, index, table" />
       </connection>
     </loaded-nodes>
   </component>
@@ -51,12 +51,21 @@
         <condition column="id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
-    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.manager_book" active-filter-id="044b1e1d-ca1c-47fc-bf17-38b8ce2164ef">
+    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.manager_book" active-filter-id="EMPTY_FILTER">
       <filter id="044b1e1d-ca1c-47fc-bf17-38b8ce2164ef" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
-    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.manager_comment" active-filter-id="" />
+    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.manager_comment" active-filter-id="50edb7a0-3123-4269-b28e-03fe4211d804">
+      <filter id="50edb7a0-3123-4269-b28e-03fe4211d804" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.manager_book_authors" active-filter-id="5d173419-0f77-40b3-bc80-0669a541e2fe">
+      <filter id="5d173419-0f77-40b3-bc80-0669a541e2fe" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.django_session" active-filter-id="28a9248c-b1cf-4568-bea9-2da0c5217823">
       <filter id="28a9248c-b1cf-4568-bea9-2da0c5217823" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="session_key" operator="=" value="" active="true" />

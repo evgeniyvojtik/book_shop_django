@@ -19,17 +19,21 @@
 
 {{ user }}
 {% for b in books %}
-    <h4> {{ b.title }}</h4>
+<a href = "{% url 'click_the_book' id=b.id  %}"><h4> {{ b.title }}</h4></a>
     <h4> {{ b.date }}</h4>
     <h6> {{ b.text }}</h6>
-<h4>{{ b.authors.all }}</h4>
-<a href = "{% url 'add_like' id=b.id %}"> <h4> likes: {{ b.count }} </h4> </a>
+    <h4>{{ b.authors.all }}</h4>
+<br><br>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <a href = "{% url 'add_like' id=b.id %}"> <h4> likes: {{ b.count }}  </h4> </a>
     {% for comment in b.comments.all %}
         <h4>{{ comment.text }}</h4>
-        <h5>{{ comment.date }}</h5>
         <h6>{{ comment.date }}</h6>
-    {% endfor %}
+        <a href = "{% url 'add_comment_like' id=comment.id %}"> <h4> likes: {{ comment.like2.count }}  </h4> </a>
+        <a href = "{% url 'delete_like' id=comment.id %}" class = "btn btn-warning btn-sm" role = "button"> Delete </a>
+        <br>
+        {% endfor %}
     <br>
-    {% endfor %}
+{% endfor %}
 </body>
 </html>
