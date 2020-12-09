@@ -15,7 +15,8 @@ class Book(models.Model):
     date = models.DateTimeField(null=True)
     text = models.TextField(verbose_name='Описание', null=True)
     authors = models.ManyToManyField(User, related_name='books')
-    likes1 = models.ManyToManyField(User, through="manager.LikeBookUser", related_name='liked_books')
+    likes = models.PositiveIntegerField(default=0)
+    users_like = models.ManyToManyField(User, through="manager.LikeBookUser", related_name='liked_books')
 
     def __str__(self):
         return f"{self.title} ~ {self.id}"
@@ -28,12 +29,21 @@ class LikeBookUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='liked_book_table')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='liked_user_table')
 
+    # def save(self, **kwargs):
+    #     #     try:
+    #     #         super().save(**kwargs)
+    #     #     except:
+    #     #         LikeBookUser.objects.get(user=self.user, book=self.book).delete()
+
     def save(self, **kwargs):
         try:
             super().save(**kwargs)
         except:
             LikeBookUser.objects.get(user=self.user, book=self.book).delete()
-
+            self.book.likes -= 1
+        else:
+            self.book.likes += 1
+        self.book.save()
 
 
 class Comment(models.Model):
@@ -41,14 +51,18 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    like2 = models.ManyToManyField(User, through="manager.LikeCommentUser", related_name='liked_comments')
+    users_like = models.ManyToManyField(
+        User,
+        through="manager.LikeCommentUser",
+        related_name='liked_comments'
+    )
 
 class LikeCommentUser(models.Model):
     class Meta:
         unique_together = ("user", 'comment')
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='liked_user_of_comment')
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='liked_comment')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='liked_comment_table')
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='liked_user_table')
 
     def save(self, **kwargs):
         try:

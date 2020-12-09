@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<!--    <h1>Hello {{ name }}</h1>-->
-<!--    <h1>Hello world from {{ addr }}file</h1>-->
-<!--    <h1>Hello world from html file</h1>-->
-<!--    <h1>Hello world from html file</h1>-->
-<!--    {% for name in  arr  %}-->
-<!--        {% if name.0 == 'O' %}-->
-<!--        <   h3>Hello Master {{name}} </h3>-->
-<!--        {% else %}-->
-<!--            <i> <h2> hello  {{ name }} </h2> </i>-->
-<!--        {% endif %}-->
-<!--    {% endfor %}-->
+{% extends 'main_template.html' %}
+{% block main %}
 
+<body>
+<div class = 'container'>
 {{ user }}
 {% for b in books %}
 <a href = "{% url 'click_the_book' id=b.id  %}"><h4> {{ b.title }}</h4></a>
@@ -24,16 +10,25 @@
     <h6> {{ b.text }}</h6>
     <h4>{{ b.authors.all }}</h4>
 <br><br>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <a href = "{% url 'add_like' id=b.id %}"> <h4> likes: {{ b.count }}  </h4> </a>
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
+    <a href = "{% url 'add_like' id=b.id %}"> <h3> likes: {{ b.likes }}  </h3> </a>
+    {% for i in "12345"%}
+    {% if rate < i %}
+        <a href="{% url 'add-rate' id=b.id  rate=i %}"><span class="fa fa-star "></span></a>
+    {% else %}
+        <a href="{% url 'add-rate' id=b.id rate=i %}"><span class="fa fa-star checked"></span></a>
+    {% endif %}
+    {% endfor %}
+
     {% for comment in b.comments.all %}
         <h4>{{ comment.text }}</h4>
         <h6>{{ comment.date }}</h6>
-        <a href = "{% url 'add_comment_like' id=comment.id %}"> <h4> likes: {{ comment.like2.count }}  </h4> </a>
+        <a href = "{% url 'add_comment_like' id=comment.id %}"> <h4> likes: {{ comment.count_like }}  </h4> </a>
         <a href = "{% url 'delete_like' id=comment.id %}" class = "btn btn-warning btn-sm" role = "button"> Delete </a>
         <br>
         {% endfor %}
     <br>
 {% endfor %}
+</div>
 </body>
 </html>

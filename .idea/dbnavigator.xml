@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f">
-        <schema name="main" object-types="dataset trigger, view, constraint, column, index, table" />
+        <schema name="main" object-types="table, view, dataset trigger, constraint, column" />
       </connection>
     </loaded-nodes>
   </component>
@@ -43,6 +43,11 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.auth_user" active-filter-id="2ddee430-fe7c-4980-b143-172aa4e0fe71">
       <filter id="2ddee430-fe7c-4980-b143-172aa4e0fe71" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="9a082a30-550b-4255-a0fb-08e3605f4f5f" dataset="main.manager_likebookuser" active-filter-id="0d0693f7-dce9-42a7-b1d2-e60cb26264a4">
+      <filter id="0d0693f7-dce9-42a7-b1d2-e60cb26264a4" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>

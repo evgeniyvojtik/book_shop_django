@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, Prefetch
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
@@ -11,12 +11,26 @@ def hello(request, name = 'Filipp', digit = None):
     return HttpResponse(f'Hello {name}')
 
 
+
+# class MyPage(View):
+#     def get(self, request):
+#         context = {}
+#         comment_query = Comment.objects.all().annotate(count_like=Count("users_like")).select_related('author')
+#         comments = Prefetch('comments', comment_query)
+#         context['books'] = Book.objects.prefetch_related("authors", comments). \
+#                                          annotate(count_like = Count('users_like'))
+#
+#
+#         return render(request, 'index.html', context)
+
 class MyPage(View):
     def get(self, request):
         context = {}
-        context['books'] = Book.objects.prefetch_related("authors", "comments").\
-                                                annotate(count=Count("likes1"))
-        context["commenter"] = Comment.objects.prefetch_related('like_comment')
+        comment_query = Comment.objects.annotate(count_like=Count("users_like")).select_related('author')
+        comments = Prefetch('comments', comment_query)
+        books = Book.objects.prefetch_related('authors', comments)
+        context['books'] = books
+        context['rate'] = "3"
         return render(request, 'index.html', context)
 
 
@@ -40,10 +54,14 @@ class DeleteLike(View):
             Comment.objects.get(id=id).delete()
         return redirect('the-main-page')
 
-class OpenBook(View):
+
+class BookPage(View):
     def get(self, request,id):
-        context = {}
-        context['books'] = Book.objects.get(id=id)
+        book = Book.objects.get(id=id)
 
-        return render(request, 'book.html', context)
 
+        return render(request, 'book.html', {"book": book})
+
+class AddRate2Book(View):
+    def get(self, request, id, rate):
+        return redirect('the-main-page')
